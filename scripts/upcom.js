@@ -187,7 +187,11 @@ $checkContainer.addEventListener('change', () =>{
 
 $search.addEventListener('input', () => {
     let filtro = filter(events, $search)
-    render2(filtro, $div)
+    if (filtro.length === 0) {
+        $div.innerHTML = "<p>No events were held. try another search.</p>"
+    } else {
+        render(filtro, $div)
+    }
 })
 
 function render2(list, container){

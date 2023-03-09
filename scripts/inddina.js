@@ -82,8 +82,13 @@ $checkContainer.addEventListener('change', () =>{
 
 $search.addEventListener('input', () => {
     let filtro = filter(events, $search)
-    render(filtro, $div)
+    if (filtro.length === 0) {
+        $div.innerHTML = "<p>No events were held. try another search.</p>"
+    } else {
+        render(filtro, $div)
+    }
 })
+
  function render(list, container){
     
     let html = ""
@@ -139,4 +144,5 @@ function filter(events, search){
     let filterByCategory = filterCategory(events)
     let filterBySearch = filterSearch(filterByCategory, search)
     return filterBySearch
+    
 }
